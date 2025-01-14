@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +22,8 @@ function Login() {
       const data = await response.json();
 
       if (response.status === 200) {
-        localStorage.setItem("token", data.token); // Sauvegarde le token JWT
-        history.push("/"); // Rediriger vers la page d'accueil ou autre page protégée
+        localStorage.setItem("token", data.token);
+        navigate("/");
       } else {
         setError(data.message || "Erreur de connexion");
       }

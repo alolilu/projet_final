@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ function Register() {
 
       if (response.status === 201) {
         // Rediriger l'utilisateur vers la page de connexion
-        history.push("/login");
+        navigate("/login");
       } else {
         setError(data.message || "Erreur d'inscription");
       }
