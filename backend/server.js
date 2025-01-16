@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-require("dotenv").config();
 
 const authRoutes = require("./routes/auth");
 
@@ -17,7 +17,6 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
-// Utilisation des routes
 app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
