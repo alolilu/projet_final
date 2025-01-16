@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
+import Weather from "./Weather";
 
 function Dashboard() {
+  const [showWeather, setShowWeather] = useState(false);
   const userEmail = localStorage.getItem("email");
+
+  const toggleWeather = () => {
+    setShowWeather(!showWeather);
+  };
 
   return (
     <div style={styles.container}>
@@ -14,8 +20,14 @@ function Dashboard() {
       <div style={styles.content}>
         <h2>Contenu principal</h2>
         <p>Explorez vos options et commencez à utiliser votre application.</p>
+        <button style={styles.button} onClick={toggleWeather}>
+          {showWeather
+            ? "Cacher la météo"
+            : "Afficher la météo des grandes villes"}
+        </button>
 
-
+        {/* Afficher la météo si l'état showWeather est true */}
+        {showWeather && <Weather />}
       </div>
     </div>
   );
